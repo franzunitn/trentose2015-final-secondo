@@ -7,9 +7,13 @@ var FlirtrModel = {
        
        for (var i=0;i<patterns.length;i++){
         var x = new RegExp(patterns[i].word);
-           if (x.test(phrase)){
+        var y = new RegExp(patterns[i].neutraliser);
+           if ((x.test(phrase))){
+               if (!y.test(phrase)){
             FlirtrModel.score= FlirtrModel.score + patterns[i].score;
+               }
            }
+           console.log(FlirtrModel.score);
        }
        
    },
@@ -28,15 +32,27 @@ var FlirtrModel = {
 
     $(document).ready(function(){
         
-        
+       
         
         $("#check").click(function(){
+            
             var domanda = $("#domanda").val();
             console.log(domanda);
             FlirtrModel.analyse(domanda);
             $(".answer").empty();
             $(".answer").append(FlirtrModel.getScore());
             console.log(FlirtrModel.score);
+            var status = "";
+            
+            if (FlirtrModel.getScore()>0){
+                status="Filtry";
+            } else if (FlirtrModel.getScore()===0){
+                status ="Neutral";
+            } else {
+                status="Friendly";
+            }
+            $(".status").empty();
+            $(".status").append(status);
         
         });
         

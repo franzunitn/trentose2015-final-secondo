@@ -1,0 +1,30 @@
+/* Your styles should go here */
+@import url(http://fonts.googleapis.com/css?family=Comfortaa|Courgette);
+
+
+body {
+  font-family: 'Comfortaa', cursive;
+}
+
+h1 {
+  line-height: 50px;
+}
+
+h1 span {
+  color: dimgrey;
+}
+
+.card {
+  min-height: 200px;
+  background: #efefef;
+  padding: 10px;
+  text-align: center;
+}
+.card input {
+  width: 80%;
+  height: 30px;
+  font-size: 18px;   
+}
+.card button {
+    font-size: 18px;  
+}

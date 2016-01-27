@@ -1,7 +1,17 @@
 var FlirtrModel = {  
-  
+    score:0,
    /* It sets the phrase to analyse */
    analyse : function (phrase){
+       
+       
+       
+       for (var i=0;i<patterns.length;i++){
+        var x = new RegExp(patterns[i].word);
+           if (x.test(phrase)){
+            FlirtrModel.score= FlirtrModel.score + patterns[i].score;
+           }
+       }
+       
    },
   
    /* Returns the flirting score (number) of the phrase.
@@ -11,6 +21,25 @@ var FlirtrModel = {
     * the right of the matching word)
     */
    getScore : function () {
+       return FlirtrModel.score;
    }
          
 };
+
+    $(document).ready(function(){
+        
+        
+        
+        $("#check").click(function(){
+            var domanda = $("#domanda").val();
+            console.log(domanda);
+            FlirtrModel.analyse(domanda);
+            $(".answer").empty();
+            $(".answer").append(FlirtrModel.getScore());
+            console.log(FlirtrModel.score);
+        
+        });
+        
+
+
+});
